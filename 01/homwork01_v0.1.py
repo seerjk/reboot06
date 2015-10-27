@@ -17,5 +17,5 @@ for n in num_list:
     if n < max1 and n > max2:
         max2 = n
 
-print "Two large numbers are: %d, %d" % (max1, max2)""
+print "Two large numbers are: %d, %d" % (max1, max2)
 
