@@ -1,0 +1,29 @@
+<style>
+    #test{
+        width: 200px;
+        height: 100px;
+        background: red;
+        margin-left: 200px;
+        font-size: 50px;
+        color: blue;
+        border-radius: 50%;
+    }
+    #test:hover{
+        background: yellow;
+    }
+</style>
+
+<input type="text">
+<input type="button" value='click me!'>
+<a href="http://www.baidu.com">haha</a>
+
+<div id='test'>
+    afasf
+</div>
+
+<script>
+    document.getElementById('test').onclick = function(){
+        alert('123')
+        this.style.display = 'none'
+    }
+</script>
