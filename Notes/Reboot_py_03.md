@@ -1,13 +1,7 @@
 # Reboot Python 03
 > date: 2015-11-7
 
-http://51reboot.sinaapp.com/publish/
 
-学生地址：http://reboot.gensee.com/training/site/s/03281519 
-口令：333333  
-网络上课地址
-账号：蒋堃@51reboot.com
-密码：jiangkun456
 
 ## 1. 上节回顾---List
 定义一个List
