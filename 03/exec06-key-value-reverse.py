@@ -21,6 +21,7 @@ rev_dict = {}
 for k in a_dict:
     rev_k = a_dict[k]
     rev_v = k
+
     if rev_dict.has_key(rev_k):
         if type(rev_dict[rev_k]) == type([]):
         # if type(rev_dict[rev_k]) == type(list): #Error
@@ -38,8 +39,19 @@ for k in a_dict:
 print rev_dict
 
 
-# revser to normal
+# revser rev_dict to normal
 
 nor_dict = {}
+
 for k in rev_dict:
-    pass
+    nor_k = rev_dict[k]
+    nor_v = k
+    
+    if isinstance(nor_k, list):
+        for sub_k in nor_k:
+            nor_dict[sub_k] = nor_v
+    else:
+        nor_dict[nor_k] = nor_v
+
+print nor_dict
+    
