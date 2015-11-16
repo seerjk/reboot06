@@ -747,3 +747,31 @@ http://51reboot.sinaapp.com/publish/04.htm#20
 简单的nginx日志分析
 日志文件在/home/shre/www_access_20140823.log
 期望输出一个list，分别存储这http状态，访问url，ip，访问次数，如下图
+
+可以优化的地方
+http://segmentfault.com/a/1190000002727070
+
+### 大文件读取的方式
+
+如果知道偏移（offset）和长度（limit, size）的话，可以在open文件后用fp.seek(offset[, whence])来定位偏移。fp.read([size])可以给出可选参数size来指定读取字节的长度。
+
+如果不知道偏移和长度的话，`fp.readlines([size])`也不是一个好方法。`readlines()`同样会把所有行都载入内存，而`xreadlines()`却会产生一个迭代器，通过惰性方式来读取。
+
+但是，从python2.3开始，`xreadlines()`作为一项方法已经被废弃（deprecated），转而推荐使用更加pythonic的写法：
+
+```python
+for line in fp:
+    do_something_with(line)
+```
+
+`for line in f`p的方式是和`xreadlines()`完全等效的。
+
+此外，对于初学者而言，打开大量文件不关闭文件句柄是一个常见的毛病。这在写小程序时没啥问题，但一旦程序变大、功能加强后，可能就会出现资源不够用的情况。所以，一般推荐用with context来打开文件：
+
+```python
+from __future__ import with_statement
+
+with open('/path/to/file', 'rb') as fp:
+    for line in fp:
+        do_something_with(line)
+```

@@ -13,6 +13,7 @@ nginx_log_path = 'www_access_20140823.log'
 try:
     with open(nginx_log_path) as f:
         log_list = f.readlines()
+        # log_list = f.xreadlines()
 except:
     print "Error!!"
 else:
