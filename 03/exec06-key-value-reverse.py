@@ -55,3 +55,13 @@ for k in rev_dict:
 
 print nor_dict
     
+
+'''
+oringial_dict = {['kka', 'kkb']: 'va'; 'teach': 'pc','waihao': 'pc','name': 'pc'}
+老师，关于上次课的dict的k-v反转有个问题，如果原始的dict的key本身是一个list，第一次k-v反转没有问题，key的list变为values。
+
+第一次反转后
+rev_dict = {'va': ['kka', 'kkb'], 'pc': ['teach', 'waihao', 'name']}
+
+但是第二次反转恢复为原来的dict就会有问题，没办法判断是否需要把作为value的['kka', 'kkb'] 在恢复的时候拆为2个key还是整理作为一个key。
+'''

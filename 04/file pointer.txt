@@ -1,0 +1,86 @@
+>>> f = open('hello.py', 'r+')
+>>> f.read()
+'hello\nsubin'
+
+
+>>> f = open('hello.py', 'r+')
+>>> print f.read()
+hello
+subin
+>>> f.write('\nI am wd')
+>>> f.close()
+>>> f = open('hello.py', 'r')
+>>> print f.read()
+hello
+subin
+I am wd
+
+
+>>> f = open('hello.py', 'w+')
+>>> f.read()
+''
+>>> f.write('hello\n')
+>>> f.read()
+''
+>>> f.close()
+
+
+
+>>> f = open('hello.py', 'r')
+>>> print f.read()
+hello
+
+>>> f = open('hello.py', 'a+')
+>>> f.read()
+'hello\n'
+>>> f.write('subin')
+>>> f.read()
+''
+>>> f.read()
+''
+
+
+>>> f = open('hello.py', 'a+')
+>>> f.write('\n haha')
+>>> f.read()
+''
+
+
+>>> f = open('hello.py', 'r+')
+>>> print f.read()
+hello
+subin
+ haha
+>>> f = open('hello.py', 'r+')
+>>> f.write('hahaa')
+>>> f.read()
+'\nsubin\n haha'
+>>> f.close()
+
+
+>>> f = open('hello.py', 'r+')
+>>> f.read()
+'hahaa\nsubin\n haha'
+>>> f = open('hello.py', 'r+')
+>>> print f.read()
+hahaa
+subin
+ haha
+>>> f = open('hello.py', 'r+')
+>>> f.write('hello')
+>>> print f.read()
+
+subin
+ haha
+>>> f = open('hello.py', 'r+')
+>>> f.write('haha')
+>>> f.read()
+'o\nsubin\n haha'
+>>> 
+
+
+>>> f = open('hello.py', 'r+')
+>>> print f.read()
+hahao
+subin
+ haha
