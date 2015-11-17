@@ -1,4 +1,5 @@
 # coding:utf-8
+__author__ = "seerjk"
 
 # 简单的nginx日志分析
 # 日志文件在/home/shre/www_access_20140823.log
@@ -21,8 +22,7 @@ else:
     if log_list == []:
         print "Empty file!!"
         exit(0)
-    
-    # count = 0
+
     log_access_dict = {}
     # {[ip_addr, http_status, request_url]: request_times; }
 
@@ -43,3 +43,5 @@ else:
     for k,v in log_access_dict.items():
         output_list = [k[1], k[2], (k[0], v)]
         print output_list
+
+# [Finished in 6.6s]
