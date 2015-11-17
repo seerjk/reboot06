@@ -29,9 +29,11 @@ else:
     # for count
     for log_line_str in log_list:
         log_line_list = log_line_str.split(' ')
+
         ip_addr = log_line_list[0]
         http_status = log_line_list[8]
         request_url = log_line_list[6]
+        
         log_access_key = (ip_addr, http_status, request_url)
 
         if log_access_key in log_access_dict:
