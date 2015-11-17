@@ -97,15 +97,15 @@ for k,v in max_dict.items():
 print "avg %.1f" %(sum_tem / sum_items)
 
 # 最高温，平均温度 写回文件
+temp_content = "\nMax temperature list:\n"
+
+for k,v in max_dict.items():
+    temp_content += "%s %.0f\n" % (k, v)
+
+temp_content += "AVG %.1f" %(sum_tem / sum_items)
+
 try:
     with open('tem.txt', 'a+') as f:
-        temp_content = "\nMax temperature list:\n"
-
-        for k,v in max_dict.items():
-            temp_content += "%s %.0f\n" % (k, v)
-
-        temp_content += "avg %.1f" %(sum_tem / sum_items)
-
         f.writelines(temp_content)
 except:
     print "Error!!"
