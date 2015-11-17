@@ -18,7 +18,11 @@ except:
     print "Error!!"
 else:
     # main process
-    count = 0
+    if log_list == []:
+        print "Empty file!!"
+        exit(0)
+    
+    # count = 0
     log_access_dict = {}
     # {[ip_addr, http_status, request_url]: request_times; }
 
