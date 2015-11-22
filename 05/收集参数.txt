@@ -1,0 +1,230 @@
+akuanRunning(285111305)  16:39:40
+>>> def hello(name = 'subin'):
+...    print name
+... 
+>>> hello2 = hello()
+subin
+>>> hello2 = hello
+>>> hello2
+<function hello at 0x7f207cb0e848>
+>>> hello2()
+subin
+>>> hello2('wd')
+wd
+>>> hello2(name = 'woniu')
+woniu
+>>> def hello():
+...     print name
+...     def hello2():
+...         print 'haha'
+... 
+>>> 
+>>> hello()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 2, in hello
+NameError: global name 'name' is not defined
+>>> hello().hello2()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 2, in hello
+NameError: global name 'name' is not defined
+>>> hello.hello2()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'function' object has no attribute 'hello2'
+>>> 
+>>> 
+>>> 
+>>> 
+>>> def hello():
+...     print 'hello'
+... 
+>>> def hello2():
+...     hello()
+...     print 'subin'
+... 
+>>> hello()
+hello
+>>> hello2()
+hello
+subin
+>>> def hello3():
+...     hello4()
+... 
+>>> hello3()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 2, in hello3
+NameError: global name 'hello4' is not defined
+>>> def hello4():
+...     print 'hello'
+... 
+>>> hello3()
+hello
+>>> def hello(funtion):
+...     function()
+... 
+>>> hello(hello3)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 2, in hello
+NameError: global name 'function' is not defined
+>>> hello(hello3())
+hello
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 2, in hello
+NameError: global name 'function' is not defined
+>>> def hello(function):
+...     function()
+... 
+>>> hello(hello3())
+hello
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 2, in hello
+TypeError: 'NoneType' object is not callable
+>>> def hello3():
+...     return 'subin'
+... 
+>>> hello(hello3())
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 2, in hello
+TypeError: 'str' object is not callable
+>>> hello(hello3)
+>>> print hello(hello3)
+None
+>>> def hello(function):
+...     return function()
+... 
+>>> print hello(hello3)
+subin
+>>> def hello(function):
+...     return function
+... 
+>>> hello(hello3)
+<function hello3 at 0x7f207cb0eaa0>
+>>> def hello3(name = 'subin'):
+...     return name
+... 
+>>> def hello(function):
+...     return function()
+... 
+>>> def hello2(name):
+...     return name
+... 
+>>> print hello(hello2('subin'))
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 2, in hello
+TypeError: 'str' object is not callable
+>>> print hello(hello2)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 2, in hello
+TypeError: hello2() takes exactly 1 argument (0 given)
+>>> print hello(hello3)
+subin
+>>> def hello(function):
+...     return function(name)
+... 
+>>> hello(hello2)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 2, in hello
+NameError: global name 'name' is not defined
+>>> def hello(function):
+...     function(name = 'subin')
+... 
+>>> hello(hello2)
+>>> print hello(hello2)
+None
+>>> def hello(*names):
+...     print names
+... 
+>>> hello()
+()
+>>> hello('subin')
+('subin',)
+>>> hello('subin', 'wd')
+('subin', 'wd')
+>>> hello('subin', 'wd', 'woniu')
+('subin', 'wd', 'woniu')
+>>> hello(name = 'subin', 'wd', 'woniu')
+  File "<stdin>", line 1
+SyntaxError: non-keyword arg after keyword arg
+>>> hello('subin', 'wd', name = 'woniu')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: hello() got an unexpected keyword argument 'name'
+>>> def hello(*name):
+...     print name[0]
+...     print name[2]
+... 
+>>> hello()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 2, in hello
+IndexError: tuple index out of range
+>>> hello('hello', 'subin', 20, 23)
+hello
+20
+>>> def hello(name, *param):
+...     print name
+...     print params
+... 
+>>> hello('subin', 1, 2, 3)
+subin
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 3, in hello
+NameError: global name 'params' is not defined
+>>> def hello(name, *param):
+...     print name
+...     print param
+... 
+>>> hello('subin', 1, 2, 3)
+subin
+(1, 2, 3)
+>>> 
+>>> 
+>>> 
+>>> def hello(**names):
+...     print names
+... 
+>>> hello(name = 'subin', age = 20, sex = 'male', techang = 'running')
+{'age': 20, 'techang': 'running', 'name': 'subin', 'sex': 'male'}
+>>> def hello(**names):
+...     print names['age']
+...     print names['name']
+... 
+>>> hello(name = 'subin', age = 20, sex = 'male', techang = 'running')
+20
+subin
+>>> dic = {'age': 20, 'techang': 'running', 'name': 'subin', 'sex': 'male'}
+>>> hello(dic)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: hello() takes exactly 0 arguments (1 given)
+>>> hello(**dic)
+20
+subin
+>>> def hello2():
+...     
+KeyboardInterrupt
+>>> def hello2(dic):
+...     print dic['name']
+...     print dic['age']
+... 
+>>> hello2(dic)
+subin
+20
+>>> hello(dic)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: hello() takes exactly 0 arguments (1 given)
+>>> hello(**dic)
+20
+subin
