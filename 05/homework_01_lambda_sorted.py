@@ -15,6 +15,11 @@ __author__ = "seerjk"
 # level 1
 num_list = [(1,4),(5,1),(2,3)]
 
+max_func = lambda (x, y): max(x, y)
+
+sorted_num_list = sorted(num_list, key=max_func)
+print sorted_num_list
+
 # level 2
 
 
