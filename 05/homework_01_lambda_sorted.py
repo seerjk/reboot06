@@ -7,25 +7,26 @@ __author__ = "seerjk"
 # 要求：用sorted和lambda完成
 # 级别1：用lambda中用max
 # 级别2：lambda中不用max
-# 提示：True乘以4 ==4 Fale乘以2 == 0
-
+# 提示：True乘以4 ==4 Fale乘以2 == 0sbbb
 # print True*4
 # print False*4
 
 # level 1
 num_list = [(1,4),(5,1),(2,3)]
 
-max_func = lambda (x, y): max(x, y)
+max_func1 = lambda (x, y): max(x, y)
 
-sorted_num_list = sorted(num_list, key=max_func)
+sorted_num_list = sorted(num_list, key=max_func1)
 print sorted_num_list
 
 # level 2
+max_func2 = lambda (x, y): (x > y) * x or (x <= y) * y
+
+sorted_num_list = sorted(num_list, key=max_func2)
+print sorted_num_list
 
 
-# >>> f3 = lambda x: x**2
-# >>> f3(2)
-# 4
+#######################
 # >>> f4 = lambda x,y: max(x,y)
 # >>> f4(2,3)
 # 3
