@@ -92,10 +92,13 @@ def calculation1(exp_str):
     # 方法2：stack，遇到operators 则出栈 exp_list.pop()
     result = exp_list.pop(0)
     while exp_list != []:
-        tmp = exp_list.pop(0)
-        if tmp in operator_dict:
-            tmp_num = exp_list.pop(0)
-            result = operator_dict[tmp](result, tmp_num)
+        operator = exp_list.pop(0)
+        # if tmp in operator_dict:
+        tmp_num = exp_list.pop(0)
+        if operator == '/' and tmp_num == 0:
+            # 除数为0的情况
+            return
+        result = operator_dict[operator](result, tmp_num)
     
     return result
 
@@ -131,10 +134,13 @@ def calculation2(expression_str):
     # L.pop([index]) -> item -- remove and return item at index (default last).
     result = exp_list.pop(0)
     while exp_list != []:
-        tmp = exp_list.pop(0)
-        if tmp in operator_dict:
-            tmp_num = exp_list.pop(0)
-            result = operator_dict[tmp](result, tmp_num)
+        operator = exp_list.pop(0)
+        # if operator in operator_dict:
+        tmp_num = exp_list.pop(0)
+        if operator == '/' and tmp_num == 0:
+            # 除数为0的情况
+            return
+        result = operator_dict[operator](result, tmp_num)
     
     return result
 
