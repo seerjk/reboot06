@@ -103,7 +103,7 @@ def calculation1(exp_str):
     return result
 
 
-def calculation2(expression_str):
+def calculation2(exp_str):
     '''
     calculate a string of expression
     
@@ -128,11 +128,16 @@ def calculation2(expression_str):
     }
 
     # 方法：stack，遇到operators 则出栈 exp_list.pop()
-    # + - 入栈
-    # * / 出栈
+    # + - 入栈 stack_list.append()
+    # * / 出栈 stack_list.pop()
     # L.insert(index, object) -- insert object before index
     # L.pop([index]) -> item -- remove and return item at index (default last).
-    result = exp_list.pop(0)
+    operator_level1 = ['+', '-']
+    operator_level2 = ['*', '/']
+
+    # 先进行 * / 运算，最后保证stack_list中只剩余 + - 运算
+    stack_list = []
+    stack_list.append(exp_list.pop(0))
     while exp_list != []:
         operator = exp_list.pop(0)
         # if operator in operator_dict:
@@ -140,6 +145,21 @@ def calculation2(expression_str):
         if operator == '/' and tmp_num == 0:
             # 除数为0的情况
             return
+
+        if operator in operator_level1:
+            stack_list.append(operator)
+            stack_list.append(tmp_num)
+        elif operator in operator_level2:
+            pop_num = stack_list.pop()
+            result = operator_dict[operator](pop_num, tmp_num)
+            stack_list.append(result)
+    
+    # * / 运算结束，保证stack_list中都是 + - 运算
+    result = stack_list.pop(0)
+    while stack_list != []:
+        operator = stack_list.pop(0)
+        # if tmp in operator_dict:
+        tmp_num = stack_list.pop(0)
         result = operator_dict[operator](result, tmp_num)
     
     return result
@@ -155,3 +175,6 @@ if __name__ == '__main__':
     print analysis_expression('1+2+5.6--5.0')
     print calculation1('1+2+5.6--5.0')
     print calculation1('-5.0')
+    print calculation1('1+2*3')
+    print calculation2('1+2*3')
+    print calculation2('1*5+2*3*3+5/-6/7')
