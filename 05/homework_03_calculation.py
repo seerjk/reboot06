@@ -12,9 +12,13 @@ def analysis_expression(exp_str):
     if error in expression: return -1
     else: return exp_list (numbers, operators)
     '''
+    if len(exp_str) == 0:
+        return -1
+
     # delete blank in exp_str
     tmp_list = exp_str.split(' ')
     exp_str = ''.join(tmp_list)
+    # 可以用replace 替换 空格为None
 
     exp_list = []
     operators_list = ['+', '-', '*', '/']
@@ -28,6 +32,7 @@ def analysis_expression(exp_str):
 
         if i == 0 and exp_str[0] == '-':
             # -5+1
+            # 第一个负数，加0
             tmp_num_str += '-'
         elif exp_str[i] == '-' and exp_str[i-1] in operators_list:
             # 1+-5
