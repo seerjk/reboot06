@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    
+    <!-- # 引入外部css # -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css
+">
+    <!-- 内部css -->
+    <style>
+        /*id 定义一个*/
+        #test{
+            width: 200px;
+            height: 200px;
+            background: red;
+            font-size: 30px;
+            color: white;
+            /*外边距*/
+            margin-left: 100px;
+            margin-top: 50px;
+            /*内边距*/
+            padding-left: 40px;
+            padding-top: 40px;
+            /*边框*/
+            border: 10px solid black;
+        }
+        /*class 定义一类*/
+        .round{
+            width: 100px;
+            height: 100px;
+            background: red;
+            border-radius: 50%;
+
+            margin-left: 50px;
+        }
+        .rect{
+            width: 20px;
+            height: 150px;
+            background: black;
+            margin-left: 90px;
+        }
+
+        #table-demo{
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+    <div id='test'>
+        你好
+    </div>
+
+    <div class='round'></div>
+    <div class='round'></div>
+    <div class='round'></div>
+    <div class='round'></div>
+    <div class='round'></div>
+    <div class="rect"></div>
+     -->
+    <form>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputFile">File input</label>
+        <input type="file" id="exampleInputFile">
+        <p class="help-block">Example block-level help text here.</p>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> Check me out
+        </label>
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+
+    <table border="1" id="table-demo" class="table">
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>3</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+        </tr>
+    </table>
+
+</body>
+</html>
