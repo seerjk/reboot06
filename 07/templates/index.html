@@ -1,0 +1,10 @@
+<p>hello world</p>
+{% if data %}
+    {% for d in data %}
+        <p>{{d}}</p>
+        <p>{{d[0]}} --- {{d[1]}} -- {{d[2]}}</p>
+    {% endfor %}
+{% else %}
+    <p>no data</p>
+{% endif %}
+{{data}}
