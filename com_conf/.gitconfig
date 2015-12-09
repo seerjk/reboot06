@@ -1,0 +1,16 @@
+[user]
+	name = seerjk
+	email = seerjk@gmail.com
+[github]
+	user = seerjk
+	token = eb3bfbcedba1940d225671781409201b875f99fd
+[alias]
+	co = checkout
+	st = status
+	ci = commit
+	br = branch
+	unstage = reset HEAD
+	last = log -1
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[color]
+	ui = true
