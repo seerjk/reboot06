@@ -1,4 +1,5 @@
 # coding:utf-8
+__author__ = "seerjk"
 
 from flask import Flask, request, render_template, redirect, url_for
 import db
@@ -30,25 +31,26 @@ def add():
             error_info = "changed %s's password." % name
         else:
             # 1
-            error_info= "add a new user."
+            error_info= "%s has been added." % name
 
     # url_for ?error_info=str
     red_url = url_for('index', error_info=error_info)
-    # print "*********************"
-    # print red_url
-    # return redirect("/?error_info=%s" % (error_info))
     return redirect(red_url)
 
 @app.route('/delete')
 def delete():
     id = request.args.get('id')
-    error_info = ""
+    deleted_name = db.select_name_by_id(id)
+    error_info = "%s has been deleted!" % deleted_name
 
     result_code = db.user_delete_by_id(id)
+
     if result_code == 0:
         error_info = "id not exist"
 
-    return redirect("/?error_info=%s" % (error_info))
+    # return redirect("/?error_info=%s" % (error_info))
+    red_url = url_for('index', error_info=error_info)
+    return redirect(red_url)
 
 
 if __name__ == '__main__':

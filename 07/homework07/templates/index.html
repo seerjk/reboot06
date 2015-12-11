@@ -5,6 +5,8 @@
     <title>User_list</title>
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="http://libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
     <style>
         #table-demo{
             width: 720px;
@@ -12,6 +14,11 @@
             margin-left: 30px;
         }
         #form-demo{
+            margin-top: 20px;
+            margin-left: 30px;
+        }
+        #alert-demo{
+            width: 720px;
             margin-top: 20px;
             margin-left: 30px;
         }
@@ -30,21 +37,15 @@
       <button type="submit" class="btn btn-primary">Add</button>
     </form>
 
-    <!--  
-    <form action="/add">
-        Name:
-        <input type="test" name="name">
-        Password:
-        <input type="passowrd" name="passwd">
-        <input type="submit" value="add">
-    </form>
-    -->
+    {% if error %}
+        <div id="alert-demo" class="alert alert-danger alert-dismissible fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hiden="true">x</span>
+            </button>
+            <h4>{{error}}</h4>
+        </div>
+    {% endif %}
 
-    <div>
-        {% if error %}
-            <h3>{{error}}</h3>
-        {% endif %}
-    </div>
     <table id=table-demo class="table table-striped">
         <tr class="success">
             <th>name</th>
@@ -60,7 +61,12 @@
             </tr>
             {% endfor %}
         {% else %}
-            <p>No Data</p>
+            <div id="alert-demo" class="alert alert-warning alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hiden="true">x</span>
+                </button>
+                <h4>There is not data in table.</h4>
+            </div>
         {% endif %}
     </table>
 </body>

@@ -1,4 +1,5 @@
 # coding:utf-8
+__author__ = "seerjk"
 # import
 import MySQLdb as mysql
 
@@ -73,6 +74,40 @@ def select_passwd_by_name(name):
         return result_tuple[0][2]
     else:
         return -1
+
+
+def select_name_by_id(id):
+    '''
+    input id
+    return name
+
+    if id not in user table: return -1 int
+    elif id exist: return name str
+    '''
+    id = int(id)
+    sql_str = "select name from user where id=%d" % id
+    result_tuple, rows = select_by_condition(sql_str)
+    print "*******"
+    print rows
+    if rows == 1:
+        return result_tuple[0][0]
+    else:
+        return -1
+
+
+def is_name_exist(name):
+    '''
+    input name
+
+    if name not exist: return False
+    if name exist: return True
+    '''
+    sql_str = "select * from user where name='%s'" % name
+    result_tuple, rows = select_by_condition(sql_str)
+    if rows == 1:
+        return True
+    else:
+        return False
 
 
 def is_name_exist(name):
@@ -241,6 +276,8 @@ def main():
 
     for c in res_tuple:
         print "%s %s %s" % c
+
+    print select_name_by_id(12)
 
 
 
