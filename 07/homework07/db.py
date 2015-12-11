@@ -178,7 +178,7 @@ def user_add(name, passwd):
         return 1
 
 
-def user_delete(name):
+def user_delete_by_name(name):
     '''
     delete row
     input: name
@@ -200,6 +200,20 @@ def user_delete(name):
     return result_code
 
 
+def user_delete_by_id(id):
+    '''
+    delete row
+    input: name
+
+    if name exist: do delete and return 1
+    if not exist: return -1
+    '''
+    # if name not exist, do delete is ok and 0 rows affected
+    sql_str = "delete from user where id='%d'" % id
+    result_code = change_user(sql_str)
+    return result_code
+
+
 def main():
     # sql_str='insert into server values("python", 16)'
     # sql_str="select * from user where name='i'"
@@ -216,8 +230,8 @@ def main():
         print "%s %s %s" % c
 
     print "***** testing delete"
-    print user_delete("juju")
-    print user_delete("ruru")
+    print user_delete_by_name("juju")
+    print user_delete_by_id(12)
 
     res_tuple = select_all()
 

@@ -1,38 +1,43 @@
 # coding:utf-8
 
-from flask import Flask, request
-import use
+from flask import Flask, request, render_template, redirect
+import db
+# import use
 
 app = Flask(__name__)
-# 初始化 user_dict
-use.update_data()
 
 @app.route('/')
 def index():
-    return use.get_html()
+    res_tuple = db.select_all()
+    error_info = request.args.get('error_info')
+    return render_template('index.html', data=res_tuple, error=error_info)
+
 
 @app.route('/add')
 def add():
-    user = request.args.get('user')
-    pwd = request.args.get('pwd')
+    name = request.args.get('name')
+    passwd = request.args.get('passwd')
 
-    if not user or not pwd:
-        return '<p>need user and pwd</p>' + use.get_html()
+    if name == "":
+        pass
+        # error_info
     else:
-        use.user_dict[user] = pwd
-        use.update_file()
+        pass
+        result_code = db.user_add(name, passwd)
 
-    return use.get_html()
+    # url_for ?error_info=str
+    return redirect('/')
 
 @app.route('/delete')
 def delete():
-    user = request.args.get('user')
-    if user in use.user_dict:
-        use.user_dict.pop(user)
-        use.update_file()
-        return use.get_html()
-    else:
-        return '<p>user no exist</p>' + use.get_html()
+    # user = request.args.get('user')
+    # if user in use.user_dict:
+    #     use.user_dict.pop(user)
+    #     use.update_file()
+    #     return use.get_html()
+    # else:
+    #     return '<p>user no exist</p>' + use.get_html()
+    pass
 
 
 if __name__ == '__main__':

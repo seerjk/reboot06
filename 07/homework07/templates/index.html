@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Server</title>
+</head>
+<body>
+    <form action="/add">
+        Name:
+        <input type="test" name="name">
+        Password:
+        <input type="passowrd" name="passwd">
+        <input type="submit" value="add">
+    </form>
+    <table border="1">
+        <tr>
+            <td>name</td>
+            <td>password</td>
+            <td>action</td>
+        </tr>
+        {% if data %}
+            {% for d in data %}
+            <tr>
+                <td>{{d[1]}}</td>
+                <td>{{d[2]}}</td>
+                <td><a href="/delete?id={{d[0]}}">delete</a></td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            <p>No Data</p>
+        {% endif %}
+    </table>
+</body>
+</html>
