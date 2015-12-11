@@ -13,6 +13,7 @@ def index():
     print '*' * 20
     print url_for('login')
     print url_for('login', name='user', pwd='123')
+    print url_for('index', name='user', pwd='123')
     return render_template('print_table.html', data=res_tuple)
 
 @app.route('/test')

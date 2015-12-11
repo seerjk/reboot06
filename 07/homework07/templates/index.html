@@ -2,21 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Server</title>
+    <title>User_list</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <style>
+#table-demo{
+    width: 720px;
+    margin-top: 20px;
+    margin-left: 30px;
+}
+    </style>
 </head>
 <body>
-    <form action="/add">
+    <form action="/add" class="form-inline">
+        <div class="form-group">
+            <label for="exampleInputName2">Name</label>
+        </div>
+        <div class="form-group"></div>
         Name:
         <input type="test" name="name">
         Password:
         <input type="passowrd" name="passwd">
         <input type="submit" value="add">
     </form>
-    <table border="1">
-        <tr>
-            <td>name</td>
-            <td>password</td>
-            <td>action</td>
+    <div>
+        {% if error %}
+            <h3>{{error}}</h3>
+        {% endif %}
+    </div>
+    <table id=table-demo class="table table-striped">
+        <tr class="success">
+            <th>name</th>
+            <th>password</th>
+            <th>action</th>
         </tr>
         {% if data %}
             {% for d in data %}

@@ -159,23 +159,26 @@ def user_add(name, passwd):
 
     input name, passwd
     if error: return -1
+    if insert a new recode: return 1
+    if update (change passwd): return 0
     '''
     user_exist = is_name_exist(name)
     if user_exist == False:
         # name not in user table -- insert
         sql_str = "insert into user (name, passwd) values ('%s', '%s')" % (name, passwd)
         result_code = change_user(sql_str)
+        oper_code = 1
     else:
         # name in user table -- update
-        # return -1
+        # return 0
         sql_str = "update user set passwd='%s' where name='%s'" % (passwd, name)
         result_code = change_user(sql_str)
+        oper_code = 0
 
     if result_code == -1:
         return -1
     else:
-        # 0, 1
-        return 1
+        return oper_code
 
 
 def user_delete_by_name(name):
@@ -206,9 +209,10 @@ def user_delete_by_id(id):
     input: name
 
     if name exist: do delete and return 1
-    if not exist: return -1
+    if not exist: return 0
     '''
     # if name not exist, do delete is ok and 0 rows affected
+    id = int(id)
     sql_str = "delete from user where id='%d'" % id
     result_code = change_user(sql_str)
     return result_code

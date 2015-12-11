@@ -1,3 +1,7 @@
+-- create db jiangkun
+create database if not exists jiangkun default charset utf8;
+-- create database if not exists jiangkun default charset utf8 collate utf8_general_ci;
+use jiangkun;
 -- create user table
 create table user (
     id int not null auto_increment comment 'increment id',
