@@ -3,7 +3,6 @@ __author__ = "seerjk"
 
 from flask import Flask, request, render_template, redirect, url_for
 import db
-# import use
 
 app = Flask(__name__)
 
