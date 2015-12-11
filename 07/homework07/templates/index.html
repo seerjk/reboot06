@@ -6,25 +6,36 @@
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <style>
-#table-demo{
-    width: 720px;
-    margin-top: 20px;
-    margin-left: 30px;
-}
+        #table-demo{
+            width: 720px;
+            margin-top: 20px;
+            margin-left: 30px;
+        }
     </style>
 </head>
 <body>
-    <form action="/add" class="form-inline">
-        <div class="form-group">
-            <label for="exampleInputName2">Name</label>
-        </div>
-        <div class="form-group"></div>
+    <form class="form-inline" action="/add">
+      <div class="form-group">
+        <label for="exampleInputName2">Name</label>
+        <input type="text" class="form-control" id="exampleInputName2" placeholder="user name">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+      </div>
+      <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+
+    <!--  
+    <form action="/add">
         Name:
         <input type="test" name="name">
         Password:
         <input type="passowrd" name="passwd">
         <input type="submit" value="add">
     </form>
+    -->
+
     <div>
         {% if error %}
             <h3>{{error}}</h3>
