@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>doc</title>
+</head>
+<body>
+    <button id="btn1">click me</button>
+
+    <div id="content">
+        <table id="table-content" border="1">
+        </table>
+    </div>
+
+    <script src="/static/jquery.js"></script>
+
+    <script>
+    /*
+    $('#btn1').on('click', function(){
+        $.get('/name', function(res){
+            $('#content').html(res)
+        })
+    })
+    */
+
+    
+    $('#btn1').on('click', function(){
+        $.getJSON('/name', function(res){
+            // console.log(res)
+            var temp = ""
+            $.each(res, function(index, value){
+                console.log('user is'+value[0]+' passwd is '+value[1])
+                temp += '<tr><td>'+value[0]+'</td><td>'+value[1]+'</td></tr>'
+            })
+            $('#table-content').html(temp)
+        })
+    })
+    </script>
+</body>
+</html>
