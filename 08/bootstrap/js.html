@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+<script>
+    // local var
+    var a = 'hello world'
+    // alert(a)
+    // chrome -- f12 -- console
+    console.log(a)
+
+    // global var
+    b = 2*3
+    console.log(b)
+
+    // c = true
+    c = false
+
+    if (c){
+        console.log('true')
+    }
+    else{
+        console.log('false')
+    }
+
+    // list array
+    var arr = [1,2,3,4,5]
+    console.log(arr.length)
+    console.log(arr[2])
+
+    // for
+    for (var i=0; i<arr.length; i++){
+        console.log(arr[i])
+    }
+
+    // dict -- object
+    var obj = {
+        'name': 'reboot',
+        'age': 2
+    }
+    // 传入变量要用 []的写法
+    // var a = "alias"
+    // obj[a] = "Jakie"
+    // console.log(obj)
+    // obj['test'] = 3
+    obj.test = 3
+    
+    // obj['age'] = 12
+    obj.age = 12
+    
+    console.log(obj['name'])
+    console.log(obj)
+
+    // exec01
+    console.log("************************")
+    var arr1 = [1,2,3,4,5,6]
+    console.log(arr)
+    console.log(arr.length)
+    console.log(arr[0])
+
+    var obj = {
+        'name': 'jiajia',
+        'age': 122
+    }
+    console.log(obj)
+
+    obj.age = 31
+    console.log(obj)
+
+    obj.test = 3838
+    console.log(obj)
+
+    var a = "alias"
+    obj[a] = "Jakie"
+    console.log(obj)
+
+    console.log('**********************')
+    // function
+    // def test(name):
+    //     print 'hello %s' % name
+    //     return 1
+
+    function test(name){
+        console.log('hello function ' + name)
+        return name
+    }
+
+    // test('asd')
+    console.log(test('asd'))
+
+    // js 函数
+    function hello(fn){
+        fn('asd')
+    }
+
+    function test(name){
+        console.log(name)
+    }
+
+    hello(test)
+    
+    // 匿名函数  function(name) 省略函数名
+    function hello(fn){
+        fn('asd')
+    }
+
+    hello(function(name){
+        console.log('hello ' + name)
+    })
+
+    // exec02
+    function chi(name){
+        console.log('吃了 ' + name)
+    }
+
+    function hello1(fn){
+        fn('宫爆 ')
+        fn('鱼香肉丝')
+        fn('烤羊')
+    }
+
+    hello1(chi)
+
+    hello1(function(name){console.log('买了 '+name)})
+
+</script>
+    
+</body>
+</html>

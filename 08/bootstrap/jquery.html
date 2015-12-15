@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <style>
+    /*css 注释  ctrl + / */
+        /*#test{
+            background: red;
+        }*/
+    </style>
+</head>
+<body>
+    <!-- html 注释  ctrl + shift + / -->
+    <input type="text" id="input1">
+    <button class="btn btn-success" id="test123">hide</button>
+    <div id="test1" class='alert alert-success'>Hello world1</div>
+    <div id="test2" class='alert alert-success'>Hello world2</div>
+    <div id="test3" class='alert alert-danger'>Hello world3</div>
+    <p id="test4" class='alert alert-success'>Hello world4</p>
+
+
+    <!-- js 写在body 的最下面 -->
+    <script src='./js/jquery.js'></script>
+    <script>
+        // js的注释  ctrl + /
+
+        // $("#test1").hide(1000).show(1000)
+        // $("#test1").hide(1000, function(){alert("abc")})
+
+        console.log($("#test1").html('hello reboot'))
+        console.log($("#test1").html('hello reboot'))
+
+
+        $("#test123").on("click", function(){
+            $("#test4").hide(2000)
+        })
+
+
+        // 选择器的三种方式: # id, . class, tag
+        // $("#test3").hide(1000)
+        // $(".alert-success").hide(2000)
+        // $("div").hide(2000)
+
+        // 逐个消失
+        // $("#test1").hide(2000, function(){
+        //     $("#test2").hide(2000, function(){
+        //         $("#test3").hide(2000, function(){
+        //             $("#test4").hide(2000)
+        //         })
+        //     })
+        // })
+
+        // for (var i=1; i<5; i++){
+        //     $("#test"+i).hide(2000)
+        // }
+
+        // var arr = ['hello','world','!']
+        // $.each(arr, function(index, value){
+        //     console.log(index)
+        //     console.log(value)
+        // })
+    </script>
+    
+</body>
+</html>

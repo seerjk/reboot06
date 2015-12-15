@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IM-teach</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    
+    <style>
+        #content{
+            height: 300px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div id="content" data-reboot="reboot123" class="col-md-4 col-md-offset-4 alert alert-success">
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 col-md-offset-4">
+                <input id="input-text" type="text" class="form-control">
+            </div>
+
+            <div class="col-md-1">
+                <button id="submit-button" class="btn btn-primary">提交</button>
+            </div>
+        </div>
+    </div>
+
+    <script src='./js/jquery.js'></script>
+    <script>
+        $("#submit-button").on('click', function(){
+            var val = $('#content').attr('data-reboot')
+            alert(val)
+            var val = $('#content').attr('data-reboot', '123')
+
+            var input = $("#input-text")
+            var val = input.val()
+            input.val('')
+            // alert(val)
+            var content = $('#content').html() + '<br>' + val
+            $("#content").html(content)
+        })
+
+        $(function(){
+            // script 可以写在最前面
+            // onload 触发事件，浏览器加载完成，才会执行这段代码
+            // js jquery 代码写这里
+        })
+    </script>
+</body>
+</html>

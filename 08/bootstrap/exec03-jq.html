@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>exec03-jquery</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+</head>
+<body>
+    <div id="test" class="alert alert-success">hello world</div>
+
+    <script src="./js/jquery.js"></script>
+    <script>
+        $("#test").hide(2000)
+        // $('#test').hide(1000)
+
+        var arr = ['hello', 'world', '!']
+        $.each(arr, function(index, value){
+            console.log(index)
+            console.log(value)
+        })
+    </script>
+</body>
+</html>
