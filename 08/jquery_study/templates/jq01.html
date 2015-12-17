@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js-ajax01</title>
+</head>
+<body>
+    <h3 id="test">test send message to bg</h3>
+    name:
+    <input type="text" id="name">
+    passwd:
+    <input type="text" id="passwd">
+    id:
+    <input type="text" id="id_num">
+    <button id="btn_add" type="button">ADD</button>
+
+    <table id="user_list_table" border="1">
+        <tr>
+            <td>name</td>
+            <td>passwd</td>
+            <td>opertion</td>
+        </tr>
+        <!-- 第一次渲染 需要用jinja  -->
+    </table>
+    
+    <script src="/static/jquery.js"></script>
+    <script>
+        $('#btn_add').on('click', function(){
+            var name = $('#name').val()
+            var passwd = $('#passwd').val()
+            var id_num = $('#id_num').val()
+            // console.log(name+":"+passwd)
+            // name == ""  passwd == ""
+            var url_add = '/add?name='+name+'&passwd='+passwd+'&id_num='+id_num
+            
+            $.getJSON(url_add, function(res){
+                // console.log("success")
+                var table_content = '<tr><td>name</td><td>passwd</td><td>opertion</td></tr>'
+
+                $.each(res, function(index, value){
+                    table_content += "<tr><td>"+value[1]+"</td><td>"+value[2]+"</td><td><input id='btn_del' id_num=\'"+value[0]+"\' type='submit' value='delete'></button></td></tr>"
+                })
+                $('#user_list_table').html(table_content)
+            })
+        })
+
+        $(document).on('click', '#btn_del', function(){
+            // $(this)  当前点击对象
+            var id_num = $(this).attr('id_num')
+            console.log(id_num)
+        })
+    </script>
+</body>
+</html>
