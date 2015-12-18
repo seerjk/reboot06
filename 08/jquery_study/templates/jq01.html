@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>js-ajax01</title>
+    <link rel="stylesheet" href="./static/bootstrap.min.css">
 </head>
 <body>
     <h3 id="test">test send message to bg</h3>
+
     name:
     <input type="text" id="name">
     passwd:
@@ -13,6 +15,24 @@
     id:
     <input type="text" id="id_num">
     <button id="btn_add" type="button">ADD</button>
+
+    <!--
+    <form id="form-demo" class="form-inline">
+      <div class="form-group">
+        <label for="exampleInputName2">Name</label>
+        <input type="text" name="name" class="form-control" id="name" placeholder="User name">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputName2">id</label>
+        <input type="text" name="id_num" class="form-control" id="id_num" placeholder="id">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" name="passwd" class="form-control" id="passwd" placeholder="Password">
+      </div>
+      <button type="submit" class="btn btn-primary" id="btn_add">Add</button>
+    </form>
+    -->
 
     <table id="user_list_table" border="1">
         <tr>
@@ -36,9 +56,11 @@
             $.getJSON(url_add, function(res){
                 // console.log("success")
                 var table_content = '<tr><td>name</td><td>passwd</td><td>opertion</td></tr>'
+                // var table_content = '<tr><td>name</td><td>passwd</td><td>opertion</td><td>index</td></tr>'
 
                 $.each(res, function(index, value){
-                    table_content += "<tr><td>"+value[1]+"</td><td>"+value[2]+"</td><td><input id='btn_del' id_num=\'"+value[0]+"\' type='submit' value='delete'></button></td></tr>"
+                    table_content += "<tr><td>"+value[1]+"</td><td>"+value[2]+"</td><td><input id='btn_del' id_num=\'"+value[0]+"\' type='submit'></td></tr>"
+                    // table_content += "<tr><td>"+value[1]+"</td><td>"+value[2]+"</td><td><input id='btn_del' id_num=\'"+value[0]+"\' type='submit'></td><td>"+index+"</td></tr>"
                 })
                 $('#user_list_table').html(table_content)
             })
