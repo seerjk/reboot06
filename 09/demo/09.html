@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="jquery-ui.css">
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="sweetalert.css">
+    <link rel="stylesheet" href="animate.css">
+    <style>
+    #test{
+        margin-top: 30px;
+        width: 300px;
+    }
+    body{
+        margin: 50px;
+    }
+    .page1{
+        height: 100px;
+        width: 100px;
+        margin: 30px;
+        background: red;
+    }
+    </style>
+</head>
+<body>
+    <!-- Datepicker -->
+    <p>Date: <input type="text" id="date-input"></p>
+    <button type="button" class="btn btn-primary btn-lg" id="get-date-btn">
+      get date
+    </button>
+    <div id="date-value"></div>
+
+    <!-- Datepicker end -->
+
+    <span>&times;</span>
+    <span>&divide;</span>
+    <span>&times;</span>
+    <span>&times;</span>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary btn-lg" id="my-btn">
+      Launch demo modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+          </div>
+          <div class="modal-body">s
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal end -->
+
+    <button type="button" class="btn btn-info animated infinite slideInLeft" id="alert-btn">alert</button>
+    <button type="button" class="btn btn-info animated slideInLeft" id="alert-btn">alert</button>
+    <div id="test">
+        <div id="slider"></div>
+        <span id="res">2</span>G
+    </div>
+
+    <div>
+        <button type="button" class="btn btn-info animated slideInLeft" id="alert-btn">left----</button>
+        <button type="button" class="btn btn-danger animated slideInRight" id="alert-btn">----right</button>
+    </div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="page1 animated slideInLeft"></div>
+            <div class="page1 animated slideInRight"></div>
+        </div>
+    </div>
+    
+
+
+    
+
+    <script src='jquery.js'></script>
+    <script src='jquery-ui.js'></script>
+    <script src="sweetalert.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script>
+        // datepicker
+        $(function() {
+            $("#date-input").datepicker({
+                dateFormat: "yy-mm-dd"
+            });
+        })
+
+        $('#get-date-btn').on('click',function(){
+            // var currentDate = $("#date-input").datepicker("getDate")
+            
+            var currentDate = $("#date-input").val()
+            console.log(currentDate)
+
+            $('#date-value').html(currentDate)
+        })
+
+        // modal
+        $('#my-btn').on('click', function() {
+            if (true) {
+                $('#myModal1').modal('show')
+            } else {
+                swal("ERROE", "没有权限哈", "error")
+            }
+        })
+
+        // 1.做函数
+        function R(args){
+            var obj = {
+                'hide':function(){
+                    console.log(args + ' hide!')
+                },
+                'show':function(){
+                    console.log(args + ' show!')
+                }
+            }
+            return obj
+        }
+
+        R('wd').hide()
+        R('pc').show()
+        // 2.做工具函数
+        R.ajax = function(args){
+            console.log(args + ' is ajaxed.')
+        }
+        R.ajax('reboot')
+        // var obj = {
+        //     name = "aa"
+        //     hello:function(){
+        //         console.log(name)
+        //     }
+        // }
+
+        $('#alert-btn').on('click', function(){
+            // swal("Here's a message!")
+            // swal("Success", "add ok")
+            // swal("Good job!", "You clicked the button!", "success")
+            swal({   
+                title: "Are you sure?",   
+                text: "Your will not be able to recover this imaginary file!",   
+                type: "warning",   
+                showCancelButton: true,   
+                confirmButtonColor: "#DD6B55",   
+                confirmButtonText: "Yes, delete it!",  
+                closeOnConfirm: false }, 
+            function(){   swal("Deleted!", "Your imaginary file has been deleted.", "success"); })
+        })
+
+      $(function() {
+        $("#slider").slider({
+            slide: function(event, ui){
+                // console.log(ui.value)
+                $('#res').html(ui.value)
+            },
+            max:64,
+            min:2,
+            step:2,
+            animate: "fast"
+        })
+      })
+  </script>
+</body>
+</html>
