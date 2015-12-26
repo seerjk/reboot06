@@ -110,7 +110,7 @@ static
 前端静态资源管理工具 -- bower
 
 
-## 3.sweetalert 各种突出窗
+## 3.sweetalert 各种弹出窗
 http://www.dglives.com/demo/sweetalert-master/example/
 
 完善作业：
