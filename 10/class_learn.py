@@ -4,8 +4,9 @@ import random
 #     return 'riding
 # 猫狗大战
 
-
+# class 首字母一般大写
 class Animal():
+    # 新建对象（初始化）调用
     def __init__(self, name, blood, dps):
         self.name = name
         self.blood = blood

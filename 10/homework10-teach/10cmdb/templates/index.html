@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <title>Document</title>
+       <link href="/static/bootstrap.min.css" rel="stylesheet"> 
+       <link href="/static/jquery-ui.css" rel="stylesheet"> 
+       <link href="/static/sweetalert.css" rel="stylesheet"> 
+ 
+ <style>
+    #name-input{
+        width:100px;
+    }
+    #page-body{
+        margin-top:20px;
+    }
+    #host-table{
+    margin-top:20px;
+    }
+    #mem-slide{
+        display:inline-block;
+        width:80px;
+        margin-left:10px;
+        margin-right:10px;
+    }
+ </style>
+ </head>
+ <body>
+
+<div id='page-body' class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <form class='form-inline'>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" id='name-input' class='form-control'>
+                </div>
+                <div class='form-group'>
+                    <label>Memery</label>
+                    <span id='mem-slide'></span>
+                    <label id='mem-value'>1G</label>
+                </div>
+                <div class="form-group">
+                    <label>end_date</label>
+                    <input type="text" id='date-input' class='form-control'>
+                </div>
+                <button id='add-btn' type='button' class="btn btn-success">add</button>
+            </form>
+
+            <table class='table table-bordered' id="host-table">
+            </table>
+        </div>
+
+
+    </div>
+
+</div>
+<div class="modal fade" id="update-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">update info</h4>
+      </div>
+
+      <div class="modal-body">
+        
+
+
+
+        
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script src='/static/jquery.js'></script>
+<script src='/static/jquery-ui.js'></script>
+<script src='/static/sweetalert.min.js'></script>
+
+<script>
+    $('#add-btn').on('click',function(){
+        var name = $('#name-input').val()
+        var mem = $('#mem-slide').slider('value')
+        var end_date = $('#date-input').val()
+        console.log(name)
+        console.log(mem)
+        console.log(end_date)
+        $.get('/addhost?name='+name+'&mem='+mem+'&end_date='+end_date,function(res){
+            console.log(res)
+            if(res=='ok'){
+                swal('success','add success','success')
+                $('#name-input').val('')
+                $('#mem-slide').slider('value', 1) 
+                $('#mem-value').html('1G')
+                $('#date-input').val('')
+                getList()
+            }else{
+                alert('error')
+            }
+        })
+    })
+
+    $('#date-input').datepicker({ 
+        dateFormat:'yy-mm-dd'
+    })
+    $('#mem-slide').slider({
+        max:32,
+        min:1,
+        slide:function(e,ui){
+            console.log(ui.value)
+            $('#mem-value').html(ui.value+'G')
+        }
+    })
+
+    function getList(){
+        $.post('/',function(res){
+            var res = JSON.parse(res)
+            var tmp = ''
+            $.each(res,function(index,value){
+                console.log(index)
+                console.log(value)
+                tmp+='<tr>'
+                tmp+='<td>'+value[1]+'</td>'
+                tmp+='<td>'+value[2]+'</td>'
+                tmp+='<td>'+value[3]+'</td>'
+                tmp+='<td><button data-id="'+value[0]+'" class="btn btn-danger btn-xs del-btn">Delete</button></td>'
+                tmp+='/tr'
+            })
+            $('#host-table').html(tmp)
+
+
+        })
+    }
+    getList()
+
+    $(document).on('click', '.del-btn', function(){
+        var id = $(this).attr('data-id')
+        swal(
+            {
+                title: "Are you sure?",   
+                text: "Delete the server",   
+                type: "warning",   
+                showCancelButton: true,   
+                confirmButtonColor: "#DD6B55",   
+                confirmButtonText: "Yes, delete it!",   
+                cancelButtonText: "No, cancel !",   
+                closeOnConfirm: false,   
+                closeOnCancel: false 
+            }, 
+            function(isConfirm){
+                if (isConfirm) {
+                    $.post('/delhost', {"id":id}, function(res){
+                        if(res=='ok'){
+                            getList()
+                            swal("Deleted!", "The server has been deleted.", "success");   
+                        }else{
+                            swal('error!')
+                        }
+                    })
+                } else {     
+                    swal("Cancelled", "The server is safe :)", "error");   
+                } 
+            }
+        )
+
+    })
+
+    $(document).on('click', '.update-btn', function(){
+        var id = $(this).attr('data-id')
+        swal(id)
+        $('#update-modal').modal('show')
+    })
+
+</script>
+</body>
+</html>
