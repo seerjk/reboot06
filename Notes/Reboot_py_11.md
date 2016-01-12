@@ -219,7 +219,7 @@ pip install requests
     * 后端 pyquery
 
 ## pyquery
-
+yum makecache
 yum install -y gcc make gcc-c++
 yum install -y libxslt libxslt-devel libxml2 libxml2-devel python-devel python-lxml
 pip install pyquery
