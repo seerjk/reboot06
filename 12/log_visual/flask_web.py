@@ -83,16 +83,6 @@ def statusdata():
     return json.dumps(res)
 
 
-@app.route('/ipmap')
-def ipmap():
-    return render_template('ipmap.html')
-
-
-# {
-#     name:'xxx',
-#     value:'100',
-#     geoCoord:[125.03,46.58]
-# }
 @app.route('/mapdata')
 def mapdata():
     # sql = 'select ip,geox,geoy,sum(value) from log_map group by ip;'
@@ -127,6 +117,19 @@ def mapdata():
 
     return json.dumps(res)
 
+# 饼图
+@app.route('/ipmap')
+def ipmap():
+    return render_template('ipmap.html')
+
+
+# {
+#     name:'xxx',
+#     value:'100',
+#     geoCoord:[125.03,46.58]
+# }
+
+
 @app.route('/ipmap2data')
 def ipmap2data():
     sql = 'select * from log_map'
@@ -152,7 +155,7 @@ def ipmap2data():
 
     return json.dumps(res)
 
-
+# map high mid low
 @app.route('/ipmap2')
 def ipmap2():
     return render_template('ipmap2.html')
@@ -187,9 +190,23 @@ def ipmap3data():
     
     return json.dumps(res)
 
+
 @app.route('/ipmap3')
 def ipmap3():
     return render_template('ipmap3.html')
+
+
+@app.route('/ipmap4migratedata')
+def ipmap4migratedata():
+    pass
+
+
+
+@app.route('/ipmap4migrate')
+def ipmap4migrate():
+    return render_template('ipmap4migrate.html')
+
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=9092)
