@@ -198,7 +198,18 @@ def ipmap3():
 
 @app.route('/ipmap4migratedata')
 def ipmap4migratedata():
-    pass
+    res = {
+        'geoCoord': {},
+        '404': {},
+        '200': {}
+    }
+    # city -- (x,y)
+    sql = 'select city,geox,geoy from log_map_city where (status=200 or status=404) and city!="" group by city'
+
+    # city value  where status = 200
+    # select city,sum(value) from log_map_city where status=200 and city!="" group by city;
+    # city value  where status = 404
+    # select city,sum(value) from log_map_city where status=404 and city!="" group by city;
 
 
 
