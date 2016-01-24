@@ -2,6 +2,7 @@
 from flask import Flask, render_template, request
 import MySQLdb as mysql
 import json
+import time
 # con = mysql.connect(host='localhost', user='root',
 #                     passwd='redhat', db='jiangkun')
 # con.autocommit(True)
@@ -320,6 +321,40 @@ def linedata():
         })
 
     return json.dumps(res)
+
+# mem 
+@app.route('/mem')
+def mem():
+    return render_template('mem.html')
+
+# 用于增量查询，记录开始查的timestamp
+time_init = 0
+@app.route('/memdata')
+def memdata():
+    global time_init
+    res = {
+        'x': [],
+        'data': []
+    }
+    if time_init > 0:
+        # 增量查
+        sql = 'select * from mem where time > %s' % (time_init)
+    else:
+        # 首次 全量查询
+        sql = 'select * from mem'
+
+    print sql
+    cur = db.execute(sql)
+
+    for c in cur["cur"].fetchall():
+        res['data'].append(c[0])
+        # res['x'].append(c[1])
+        t = time.strftime('%H:%M:%S', time.localtime(c[1]))
+        res['x'].append(t)
+        time_init = c[1]
+
+    return json.dumps(res)
+
 
 
 if __name__ == '__main__':

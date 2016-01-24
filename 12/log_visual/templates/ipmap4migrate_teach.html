@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="height:600px"></div>
+
+    <script src='/static/jquery.js'></script>
+    <!-- ECharts单文件引入 -->
+    <script src="/static/echarts-all.js"></script>
+    <script type="text/javascript">
+
+$.getJSON('/linedata', function(res){
+    console.log(res)
+    // 基于准备好的dom，初始化echarts图表
+    var myChart = echarts.init(document.getElementById('main')); 
+    var placeList = [
+    ]
+    var option = {
+        backgroundColor: '#1b1b1b',
+        color: ['gold','aqua','lime'],
+        title : {
+            text: '模拟迁徙',
+            subtext:'数据纯属虚构',
+            x:'center',
+            textStyle : {
+                color: '#fff'
+            }
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: '{b}'
+        },
+        legend: {
+            orient: 'vertical',
+            x:'left',
+            data:['北京 Top10', '上海 Top10'],
+            selectedMode: 'single',
+            selected:{
+                '上海 Top10' : false,
+                '广州 Top10' : false
+            },
+            textStyle : {
+                color: '#fff'
+            }
+        },
+        toolbox: {
+            show : true,
+            orient : 'vertical',
+            x: 'right',
+            y: 'center',
+            feature : {
+                mark : {show: true},
+                dataView : {show: true, readOnly: false},
+                restore : {show: true},
+                saveAsImage : {show: true}
+            }
+        },
+        dataRange: {
+            min : 0,
+            max : res.dataRange_max,
+            calculable : true,
+            color: ['#ff3333', 'orange', 'yellow','lime','aqua'],
+            textStyle:{
+                color:'#fff'
+            }
+        },
+        series : [
+            {
+                name: '全国',
+                type: 'map',
+                roam: true,
+                hoverable: false,
+                mapType: 'china',
+                itemStyle:{
+                    normal:{
+                        borderColor:'rgba(100,149,237,1)',
+                        borderWidth:0.5,
+                        areaStyle:{
+                            color: '#1b1b1b'
+                        }
+                    }
+                },
+                data:[],
+                markLine : {
+                    smooth:true,
+                    symbol: ['none', 'circle'],  
+                    symbolSize : 1,
+                    itemStyle : {
+                        normal: {
+                            color:'#fff',
+                            borderWidth:1,
+                            borderColor:'rgba(30,144,255,0.5)'
+                        }
+                    },
+                    data : res.alldata,
+                    // [
+                    //     [{name:'广州'},{name:'烟台'}],
+                    //     [{name:'广州'},{name:'盐城'}]
+                    // ],
+                },
+                geoCoord: res.geodata
+                // {
+                //     '青岛': [120.4651,36.3373],
+                //     '韶关': [113.7964,24.7028]
+                // }
+            },
+            {
+                name: '北京 Top10',
+                type: 'map',
+                mapType: 'china',
+                data:[],
+                markLine : {
+                    smooth:true,
+                    effect : {
+                        show: true,
+                        scaleSize: 1,
+                        period: 30,
+                        color: '#fff',
+                        shadowBlur: 10
+                    },
+                    itemStyle : {
+                        normal: {
+                            borderWidth:1,
+                            lineStyle: {
+                                type: 'solid',
+                                shadowBlur: 10
+                            }
+                        }
+                    },
+                    data : res.beijingdata
+                    // [
+                    //     [{name:'北京'}, {name:'重庆',value:20}],
+                    //     [{name:'北京'}, {name:'常州',value:10}]
+                    // ]
+                },
+                markPoint : {
+                    symbol:'emptyCircle',
+                    symbolSize : function (v){
+                        return 10 + v/100
+                    },
+                    effect : {
+                        show: true,
+                        shadowBlur : 0
+                    },
+                    itemStyle:{
+                        normal:{
+                            label:{show:false}
+                        },
+                        emphasis: {
+                            label:{position:'top'}
+                        }
+                    },
+                    data : res.beijingpoint
+                    // [
+                    //     {name:'上海',value:95},
+                    //     {name:'重庆',value:20},
+                    //     {name:'常州',value:10}
+                    // ]
+                }
+            },
+            {
+                name: '上海 Top10',
+                type: 'map',
+                mapType: 'china',
+                data:[],
+                markLine : {
+                    smooth:true,
+                    effect : {
+                        show: true,
+                        scaleSize: 1,
+                        period: 30,
+                        color: '#fff',
+                        shadowBlur: 10
+                    },
+                    itemStyle : {
+                        normal: {
+                            borderWidth:1,
+                            lineStyle: {
+                                type: 'solid',
+                                shadowBlur: 10
+                            }
+                        }
+                    },
+                    data : res.shanghaidata
+                    // [
+                    //     [{name:'上海'},{name:'丹东',value:20}],
+                    //     [{name:'上海'},{name:'大连',value:10}]
+                    // ]
+                },
+                markPoint : {
+                    symbol:'emptyCircle',
+                    symbolSize : function (v){
+                        return 10 + v/100
+                    },
+                    effect : {
+                        show: true,
+                        shadowBlur : 0
+                    },
+                    itemStyle:{
+                        normal:{
+                            label:{show:false}
+                        },
+                        emphasis: {
+                            label:{position:'top'}
+                        }
+                    },
+                    data : res.shanghaipoint
+                    // [
+                    //     {name:'上海',value:95},
+                    //     {name:'重庆',value:20},
+                    //     {name:'常州',value:10}
+                    // ]
+                }
+            }
+        ]
+    };
+                    
+                    
+                    
+
+    // 为echarts对象加载数据 
+    myChart.setOption(option);
+                    
+})
+    </script>
+</body>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+    <div id="main" style="height:400px"></div>
+    <!-- ECharts单文件引入 -->
+    <script src='http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js'></script>
+    <script src="http://echarts.baidu.com/build/dist/echarts-all.js"></script>
+
+	<script>	
+$.getJSON('/memdata', function(res){
+    // 基于准备好的dom，初始化echarts图表
+	var myChart = echarts.init(document.getElementById('main'));
+
+    var option = {
+        title : {
+            text: 'Mem usage',
+            subtext: '纯属虚构'
+        },
+        tooltip : {
+            trigger: 'axis'
+        },
+        legend: {
+            data:['mem_usage']
+        },
+        dataZoom : {
+            show : false,
+            start : 0,
+            end : 100
+        },
+        xAxis : [
+            {
+                type : 'category',
+                boundaryGap : true,
+                data : res.x
+            }
+        ],
+        yAxis : [
+            {
+                type : 'value',
+                scale: true,
+                name : 'usage',
+                boundaryGap: [0.2, 0.2]
+            }
+        ],
+        series : [
+            {
+                name:'最新成交价',
+                type:'line',
+                data: res.data
+            }
+        ]
+    };
+    var lastData = 11;
+    var axisData;
+
+    // clearInterval(timeTicket);
+    // timeTicket = setInterval(function (){
+    //     lastData += Math.random() * ((Math.round(Math.random() * 10) % 2) == 0 ? 1 : -1);
+    //     lastData = lastData.toFixed(1) - 0;
+    //     axisData = (new Date()).toLocaleTimeString().replace(/^\D*/,'');
+        
+    //     // 动态数据接口 addData
+    //     myChart.addData([
+    //         [
+    //             0,        // 系列索引
+    //             Math.round(Math.random() * 1000), // 新增数据
+    //             false,     // 新增数据是否从队列头部插入
+    //             false     // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+    //         ]
+    //     ]);
+    // }, 2100);
+    setInterval(function(){
+        $.getJSON('/memdata', function(res){
+            var tmp = []
+
+            $.each(res.x, function(index,value){
+                tmp.push([0, res.data[index], false, true, value])
+            })
+            myChart.addData(tmp)
+        })
+    }, 3000)
+                    
+
+	myChart.setOption(option);
+})
+
+	</script>
+</body>
+</html>
